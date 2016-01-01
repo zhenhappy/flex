@@ -2,34 +2,37 @@
 
 body {
   margin: 0;
+  // 下面两行让字体柔和一些
   -webkit-font-smoothing: antialiased;
   color: #727272;
 }
 
 .app-wrap {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+  height: 100vh; // vh是viewport height,相当于高度100%的意思
+  display: flex; // 父元素display:flex之后,里面各个子元素自动变成flex item,默认是按行排列的
+  flex-direction: column; // 改变flex-direction让它按照从上到下来排列
 }
 
 .app-header {
   background-color: $primary-color;
   height: 80px;
   border-bottom: 2px solid #fff59d;
-  flex-shrink: 0;
+  flex-shrink: 0; // 上面设置的height: 80px不生效,flex默认最大化占用屏幕的空间为了解决这个问题,设置flex-shrink: 0,意思就是不让它压缩空间
 }
 
 .content {
   background-color: #fafafa;
+  // 当主体内容不够多的时候,footer就会跟随上来,为了让主体content去占据所有剩余部分的空间,就要设置flex-grow: 1
+  // 默认所有flex item的flex-grow是等于0的,所以只要content的flex-grow大于0,它就会获得所有空余空间的使用权
   flex-grow: 1;
   line-height: 1.8;
   padding: 16px;
-  overflow-y: scroll;
+  overflow-y: scroll; // 裁剪溢出内容,并提供滚动机制
 }
 
 .app-footer {
   height: 80px;
-  flex-shrink: 0;
+  flex-shrink: 0; // 和header里面的功能一样,不让它压缩空间
   background-color: $primary-color;
   border-top: 1px solid #e6e6e6;
 }
