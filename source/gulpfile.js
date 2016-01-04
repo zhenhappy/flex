@@ -1,6 +1,14 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var prefix = require('gulp-autoprefixer');
+var wrap = require('gulp-wrap');
+
+// gulp-wrap处理任务
+gulp.task('build', function(){
+  gulp.src('pages/*.html')
+      .pipe(wrap({src:'layout/default.html'}))
+      .pipe(gulp.dest('..'));
+});
 
 // sass语法防错函数
 function handleError(err) {
@@ -24,9 +32,10 @@ gulp.task('cp', function(){
 
 // 文件变化监控
 gulp.task('watch', function(){
-  gulp.watch(['*.html'], ['cp']); // 监控所有html文件有变化就执行cp任务
+  // gulp.watch(['*.html'], ['cp']); // 监控所有html文件有变化就执行cp任务
+  gulp.watch(['**/*.html'], ['build']); // 使用gulp-wrap后就不需要上面的文件拷贝了
   gulp.watch(['styles/*.scss'], ['sass']); // 监控所有sass文件有变化就执行sass任务
 });
 
 // 默认任务
-gulp.task('default', ['sass', 'cp', 'watch']);
+gulp.task('default', ['sass', 'build', 'watch']);
