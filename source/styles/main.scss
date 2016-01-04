@@ -4,7 +4,15 @@ body {
   margin: 0;
   // 下面两行让字体柔和一些
   -webkit-font-smoothing: antialiased;
-  color: #727272;
+  color: $secondary-text-color;
+}
+
+* {
+  box-sizing: border-box; // 让元素添加padding后,整个区域不变大
+}
+
+a {
+  text-decoration: none; // 取消超链接的下划线
 }
 
 .app-wrap {
@@ -14,11 +22,31 @@ body {
 }
 
 .app-header {
+  padding: 10px;
+  color: $primary-color-text;
   background-color: $primary-color;
   height: 80px;
+  display: flex; // 将子元素变成flex item,每个flex item默认会占据整个父元素的高度
+  align-items: center; // 默认flex item是水平排列的, 在父元素这里设置居中就会在垂直方向上居中了
+  justify-content: space-between; // 让各个item之间保持合理的距离
   border-bottom: 2px solid #fff59d;
   flex-shrink: 0; // 上面设置的height: 80px不生效,flex默认最大化占用屏幕的空间为了解决这个问题,设置flex-shrink: 0,意思就是不让它压缩空间
+  a {
+    font-size: 11px;
+    color: $primary-color-text;
+  }
+  .button {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 10px 15px;
+    border-radius: 4px;
+  }
 }
+
+/*
+.app-header > * { // 调试辅助边框
+  border: 1px solid red;
+}
+*/
 
 .content {
   background-color: #fafafa;
@@ -33,6 +61,24 @@ body {
 .app-footer {
   height: 80px;
   flex-shrink: 0; // 和header里面的功能一样,不让它压缩空间
+  display: flex; // 让子元素flex item化
   background-color: $primary-color;
   border-top: 1px solid #e6e6e6;
+  a { // 临时性的在几个子元素a标签添加左边框,类似辅助线的效果,方便后面调整样式
+    padding: 15px;
+    text-align: center;
+    color: rgba(0,0,0,0.5);
+    border-left: 2px solid rgba(0,0,0,0.1);
+    flex-grow: 1; // 瓜分所有剩余空间,默认是水平排列的,所以设置好后每个flex item所占据的水平空间就都一样了
+    &:first-child { // 选中第一个子元素
+      border-left: 0; // 让它左边框等于0,只要中键间隔的三个边框,用于区分元素分界线
+    }
+    i { // 为了让元素看上去更好看
+      display: block; // 设置成块级元素
+      font-size: 25px;
+      color: white;
+      text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+      padding-bottom: 10px;
+    }
+  }
 }
