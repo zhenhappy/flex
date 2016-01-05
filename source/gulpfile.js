@@ -5,7 +5,7 @@ var wrap = require('gulp-wrap');
 var browserSync = require('browser-sync');
 
 // browser-sync处理任务
-gulp.task('browser-sync', ['sass', 'build'], function(){ // 在执行browser-sync任务之前先执行sass和build这两个任务
+gulp.task('browser-sync', ['sass', 'build', 'cp'], function(){ // 在执行browser-sync任务之前先执行sass,build,cp这三个任务
   browserSync({
     server: {
       baseDir: '..'
@@ -37,8 +37,8 @@ gulp.task('sass', function(){
 
 // 文件拷贝任务
 gulp.task('cp', function(){
-  gulp.src('index.html')
-      .pipe(gulp.dest('..')); // 复制到目标位置
+  return gulp.src('js/main.js', { base: '.'})
+             .pipe(gulp.dest('..')); // 复制到目标位置
 });
 
 // rebuild处理任务
@@ -52,6 +52,7 @@ gulp.task('watch', function(){
   // gulp.watch(['**/*.html'], ['build']); // 使用gulp-wrap后就不需要上面的文件拷贝了
   gulp.watch(['**/*.html'], ['rebuild']); // 使用browser-sync后就不用build命令了,改用rebuild就可以了
   gulp.watch(['styles/*.scss'], ['sass']); // 监控所有sass文件有变化就执行sass任务
+  gulp.watch(['js/main.js'], ['cp']); // 监控js文件变化,并拷贝
 });
 
 // 默认任务
