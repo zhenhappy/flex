@@ -37,7 +37,7 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1200px) { // 当宽度大于1200px的时候变为三列
   .course {
     .card {
       width: calc(33.33333% - 20px - 20px);
