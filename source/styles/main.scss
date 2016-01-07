@@ -88,3 +88,23 @@ a {
     border-bottom: 4px solid $accent-color;
   }
 }
+
+.sidebar {
+  display: none; // sidebar 默认是隐藏的
+  // sidebar样式
+  width: 200px;
+  // height: 100vh; // 因为app-wrap里面的子元素默认就是flex元素,高度自动就是100vh,所以这行就可以不要了
+  background-color: $primary-color;
+}
+
+@media (min-width: 800px) { // 当宽度超过800px的时候
+  .app-wrap { // app-wrap默认样式是flex-direction: column从上到下排列, 改成从左到右排列就可以了
+    flex-direction: row;
+  }
+  .app-header, .app-footer { // 设置header和footer隐藏
+    display: none;
+  }
+  .sidebar { // 设置sidebar
+    display: block;
+  }
+}

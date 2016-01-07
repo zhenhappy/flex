@@ -99,3 +99,20 @@ a {
       border-bottom: 4px solid #FF4081; }
   .app-footer a.active {
     border-bottom: 4px solid #FF4081; }
+
+.sidebar {
+  display: none;
+  width: 200px;
+  background-color: #00BCD4; }
+
+@media (min-width: 800px) {
+  .app-wrap {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row; }
+  .app-header, .app-footer {
+    display: none; }
+  .sidebar {
+    display: block; } }
