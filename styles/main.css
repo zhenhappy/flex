@@ -102,8 +102,35 @@ a {
 
 .sidebar {
   display: none;
-  width: 200px;
+  width: 300px;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
   background-color: #00BCD4; }
+  .sidebar a.active {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.2); }
+  .sidebar h1 {
+    margin: 0;
+    text-align: center;
+    padding: 20px;
+    color: #fff;
+    border-bottom: 2px solid #fff59d; }
+  .sidebar a {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 20px;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.5); }
+    .sidebar a:hover {
+      background-color: rgba(0, 0, 0, 0.1); }
+    .sidebar a i {
+      color: #fff;
+      text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+      display: inline-block;
+      margin-right: 10px; }
 
 @media (min-width: 800px) {
   .app-wrap {
@@ -116,3 +143,44 @@ a {
     display: none; }
   .sidebar {
     display: block; } }
+
+.course {
+  margin: 0 auto;
+  padding: 16px; }
+  .course .card {
+    -webkit-transition: all 450ms ease;
+    transition: all 450ms ease;
+    background-color: #fff;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+    text-align: center;
+    padding: 10px;
+    margin: 20px 0;
+    width: 100%; }
+    .course .card img {
+      max-width: 100%;
+      margin: 0 auto;
+      border: 1px solid #eee; }
+    .course .card .text {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      word-wrap: break-word; }
+    .course .card:hover {
+      cursor: pointer;
+      box-shadow: 0 1px 12px rgba(0, 0, 0, 0.12), 0 1px 8px rgba(0, 0, 0, 0.24); }
+
+@media (min-width: 1000px) {
+  .course {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap; }
+    .course .card {
+      margin: 20px;
+      width: calc(50% - 20px - 20px); } }
+
+@media (min-width: 1200px) {
+  .course .card {
+    width: calc(33.33333% - 20px - 20px); } }

@@ -1,0 +1,16 @@
+@import "palette";
+
+body {
+  margin: 0;
+  // 下面两行让字体柔和一些
+  -webkit-font-smoothing: antialiased;
+  color: $secondary-text-color;
+}
+
+* {
+  box-sizing: border-box; // 让元素添加padding后,整个区域不变大
+}
+
+a {
+  text-decoration: none; // 取消超链接的下划线
+}

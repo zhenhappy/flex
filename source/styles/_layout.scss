@@ -1,0 +1,119 @@
+.app-wrap {
+  height: 100vh; // vh是viewport height,相当于高度100%的意思
+  display: flex; // 父元素display:flex之后,里面各个子元素自动变成flex item,默认是按行排列的
+  flex-direction: column; // 改变flex-direction让它按照从上到下来排列
+}
+
+.app-header {
+  padding: 10px;
+  color: $primary-color-text;
+  background-color: $primary-color;
+  height: 80px;
+  display: flex; // 将子元素变成flex item,每个flex item默认会占据整个父元素的高度
+  align-items: center; // 默认flex item是水平排列的, 在父元素这里设置居中就会在垂直方向上居中了
+  justify-content: space-between; // 让各个item之间保持合理的距离
+  border-bottom: 2px solid #fff59d;
+  flex-shrink: 0; // 上面设置的height: 80px不生效,flex默认最大化占用屏幕的空间为了解决这个问题,设置flex-shrink: 0,意思就是不让它压缩空间
+  a {
+    font-size: 11px;
+    color: $primary-color-text;
+  }
+  .button {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 10px 15px;
+    border-radius: 4px;
+  }
+}
+
+/*
+.app-header > * { // 调试辅助边框
+  border: 1px solid red;
+}
+*/
+
+.content {
+  background-color: #fafafa;
+  // 当主体内容不够多的时候,footer就会跟随上来,为了让主体content去占据所有剩余部分的空间,就要设置flex-grow: 1
+  // 默认所有flex item的flex-grow是等于0的,所以只要content的flex-grow大于0,它就会获得所有空余空间的使用权
+  flex-grow: 1;
+  line-height: 1.8;
+  padding: 16px;
+  overflow-y: scroll; // 裁剪溢出内容,并提供滚动机制
+}
+
+.app-footer {
+  height: 80px;
+  flex-shrink: 0; // 和header里面的功能一样,不让它压缩空间
+  display: flex; // 让子元素flex item化
+  background-color: $primary-color;
+  border-top: 1px solid #e6e6e6;
+  a { // 临时性的在几个子元素a标签添加左边框,类似辅助线的效果,方便后面调整样式
+    padding: 15px;
+    text-align: center;
+    color: rgba(0,0,0,0.5);
+    border-left: 2px solid rgba(0,0,0,0.1);
+    flex-grow: 1; // 瓜分所有剩余空间,默认是水平排列的,所以设置好后每个flex item所占据的水平空间就都一样了
+    &:first-child { // 选中第一个子元素
+      border-left: 0; // 让它左边框等于0,只要中键间隔的三个边框,用于区分元素分界线
+    }
+    i { // 为了让元素看上去更好看
+      display: block; // 设置成块级元素
+      font-size: 25px;
+      color: white;
+      text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+      padding-bottom: 10px;
+    }
+    &:hover {
+      border-bottom: 4px solid $accent-color;
+    }
+  }
+  a.active {
+    border-bottom: 4px solid $accent-color;
+  }
+}
+
+.sidebar {
+  display: none; // sidebar 默认是隐藏的
+  width: 300px;
+  // height: 100vh; // 因为app-wrap里面的子元素默认就是flex元素,高度自动就是100vh,所以这行就可以不要了
+  flex-shrink: 0; // flex的特点导致sidebar被挤扁,flex-shrink默认值是1,因此把它设置成0就不萎缩了
+  background-color: $primary-color;
+  a.active {
+    color: #fff;
+    background-color: rgba(0,0,0,0.2);
+  }
+  h1 {
+     margin: 0;
+     text-align: center;
+     padding: 20px;
+     color: #fff;
+     border-bottom: 2px solid #fff59d;
+  }
+  a {
+    display: flex;
+    padding: 20px;
+    font-size: 18px;
+    color: rgba(0,0,0,0.5);
+    &:hover {
+      background-color: rgba(0,0,0,0.1);
+    }
+    i {
+      color: #fff;
+      text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
+}
+
+@media (min-width: 800px) { // 当宽度超过800px的时候
+  .app-wrap { // app-wrap默认样式是flex-direction: column从上到下排列, 改成从左到右排列就可以了
+    flex-direction: row;
+  }
+  .app-header, .app-footer { // 设置header和footer隐藏
+    display: none;
+  }
+  .sidebar { // 设置sidebar
+    display: block;
+  }
+}

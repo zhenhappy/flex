@@ -37,7 +37,7 @@ gulp.task('sass', function(){
 
 // 文件拷贝任务
 gulp.task('cp', function(){
-  return gulp.src('js/main.js', { base: '.'})
+  return gulp.src(['js/main.js', 'assets/*'], { base: '.'})
              .pipe(gulp.dest('..')); // 复制到目标位置
 });
 

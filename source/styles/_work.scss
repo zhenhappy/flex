@@ -1,0 +1,46 @@
+.course {
+  margin: 0 auto;
+  padding: 16px;
+  .card {
+    transition: all 450ms ease;
+    background-color: #fff;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+    text-align: center;
+    padding: 10px;
+    margin: 20px 0;
+    width: 100%;
+    img {
+      max-width: 100%;
+      margin: 0 auto;
+      border: 1px solid #eee;
+    }
+    .text {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      word-wrap: break-word;
+    }
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 1px 12px rgba(0, 0, 0, 0.12), 0 1px 8px rgba(0, 0, 0, 0.24);
+    }
+  }
+}
+
+@media (min-width: 1000px) { // 当宽度大于1000px的时候
+  .course {
+    display: flex; // 将每个卡片变成flex元素
+    flex-wrap: wrap; // 让flex元素自动换行
+    .card { // 对card的具体宽度进行设置
+      margin: 20px; // 卡片间上下左右的间距都是20px
+      width: calc(50% - 20px - 20px); // 50%宽度减去左右边距
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .course {
+    .card {
+      width: calc(33.33333% - 20px - 20px);
+    }
+  }
+}
